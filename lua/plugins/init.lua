@@ -32,6 +32,12 @@ local plugins = {
     {
         'akinsho/bufferline.nvim',
         version = '*',
+    },
+    {
+        'kdheepak/lazygit.nvim',
+        dependencies = {
+            'nvim-lua/plenary.nvim'
+        }
     }
 }
 
