@@ -13,6 +13,18 @@ local plugins = {
                     name = "Dracula",
 	                colorscheme = "dracula"
 	            },
+                {
+                    name = "JetBrains Fleet",
+                    colorscheme = "fleet"
+                },
+                {
+                    name = "oxocarbon",
+                    colorscheme = "oxocarbon"
+                },
+                {
+                    name = "adwaita",
+                    colorscheme = "adwaita"
+                }
             },
 	        themeConfigFile = "~/.config/nvim/init.lua",
 	        livePreview = true,
@@ -24,6 +36,9 @@ local plugins = {
     {
         "Mofiqul/vscode.nvim",
         "Mofiqul/dracula.nvim",
+        "felipeagc/fleet-theme-nvim",
+        "nyoom-engineering/oxocarbon.nvim",
+        "Mofiqul/adwaita.nvim"
     }
 }
 

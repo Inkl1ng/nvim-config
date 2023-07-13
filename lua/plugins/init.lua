@@ -6,13 +6,6 @@ local plugins = {
         end,
     },
     {
-        "williamboman/mason.nvim",
-        build = ":MasonUpdate",
-        config = function()
-            require("mason").setup()
-        end,
-    },
-    {
         "m4xshen/smartcolumn.nvim",
         opts = {
             colorcolumn = { "80", "100" },
@@ -30,8 +23,15 @@ local plugins = {
         'nvim-lua/plenary.nvim'
     },
     {
-        'crispgm/nvim-tabline',
-        config = true
+        'nvim-telescope/telescope-file-browser.nvim',
+        dependencies = {
+            'nvim-telescope/telescope.nvim',
+            'nvim-lua/plenary.nvim'
+        },
+    },
+    {
+        'akinsho/bufferline.nvim',
+        version = '*',
     }
 }
 

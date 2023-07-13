@@ -24,8 +24,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
+require("lsp-config")
+require("telescope-config")
+require("plugins-config")
+
 -- theme resistance
 -- Themery block
 -- This block will be replaced by Themery.
-vim.cmd("colorscheme vscode")
+vim.cmd("colorscheme fleet")
 -- end themery block

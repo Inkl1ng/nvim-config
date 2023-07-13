@@ -1,6 +1,6 @@
 local plugins = {
     "nvim-lualine/lualine.nvim",
- --   dependencies = { "nvim-tree/nvim-web-devicons", opt = false },
+    -- dependencies = { "nvim-tree/nvim-web-devicons", opt = false },
     config = function()
         require("lualine").setup{
             options = {
