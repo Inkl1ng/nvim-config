@@ -10,3 +10,6 @@ map('n', '<leader>\\', ':bd<cr>', {})
 
 -- exit terminal insert mode
 vim.keymap.set('t', '<esc>', '<C-\\><c-n>', {})
+
+-- open lazygit
+map('n', '<leader>gg', ':LazyGit<cr>', { noremap = true, silent = true })
