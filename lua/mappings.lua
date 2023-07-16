@@ -15,4 +15,4 @@ vim.keymap.set('t', '<c-x>', '<C-\\><c-n>', { noremap = true, silent = true })
 map('n', '<leader>gg', ':LazyGit<cr>', { noremap = true, silent = true })
 
 -- open Themery
-map('n', '<leader>Th', ':Themery<cr>', { noremap = true, silent = true })
+map('n', '<leader>TH', ':Themery<cr>', { noremap = true, silent = true })
