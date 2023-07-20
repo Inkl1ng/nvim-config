@@ -24,6 +24,10 @@ local plugins = {
                 {
                     name = "adwaita",
                     colorscheme = "adwaita"
+                },
+                {
+                    name = "ofirkai (monokai)",
+                    colorscheme = "ofirkai"
                 }
             },
 	        themeConfigFile = "~/.config/nvim/init.lua",
@@ -38,7 +42,8 @@ local plugins = {
         "Mofiqul/dracula.nvim",
         "felipeagc/fleet-theme-nvim",
         "nyoom-engineering/oxocarbon.nvim",
-        "Mofiqul/adwaita.nvim"
+        "Mofiqul/adwaita.nvim",
+        "ofirgall/ofirkai.nvim",
     }
 }
 
