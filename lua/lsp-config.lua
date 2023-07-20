@@ -24,7 +24,7 @@ local cmp_action = require('lsp-zero').cmp_action()
 cmp.setup({
     mapping = {
         -- use enter to select selection
-        ['<cr>'] = cmp.mapping.confirm({select = true}),
+        ['<cr>'] = cmp.mapping.confirm({select = false}),
         -- use tab and shift-tab to change selection
         ['<Tab>'] = cmp_action.tab_complete(),
         ['<s-Tab>'] = cmp_action.select_prev_or_fallback(),
