@@ -38,6 +38,21 @@ local plugins = {
         dependencies = {
             'nvim-lua/plenary.nvim'
         }
+    },
+    {
+        'jakemason/ouroboros',
+        dependencies = {
+            'nvim-lua/plenary.nvim'
+        }
+    },
+    {
+        'akinsho/toggleterm.nvim',
+        version = "*",
+        opts = {
+            size = 20,
+            open_mapping = [[<a-i>]],
+            direction = 'float'
+        }
     }
 }
 
