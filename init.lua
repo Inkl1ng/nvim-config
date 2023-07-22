@@ -27,7 +27,6 @@ require("lazy").setup("plugins")
 require("lsp-config")
 require("telescope-config")
 require("plugins-config")
-require("toggle-term")
 
 -- theme resistance
 -- Themery block
