@@ -26,8 +26,8 @@ cmp.setup({
         -- use enter to select selection
         ['<cr>'] = cmp.mapping.confirm({select = false}),
         -- use tab and shift-tab to change selection
-        ['<Tab>'] = cmp_action.tab_complete(),
-        ['<s-Tab>'] = cmp_action.select_prev_or_fallback(),
+        ['<Tab>'] = cmp_action.luasnip_supertab(),
+        ['<s-Tab>'] = cmp_action.luasnip_shift_supertab(),
     },
     window = {
         completion = cmp.config.window.bordered(),
