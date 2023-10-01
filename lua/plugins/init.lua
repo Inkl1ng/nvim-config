@@ -1,9 +1,7 @@
 local plugins = {
     {
         "nvim-treesitter/nvim-treesitter",
-        build = function()
-            require("nvim-treesitter.install").update({ with_sync = true })
-        end,
+        build = ":TSUpdate"
     },
     {
         "m4xshen/smartcolumn.nvim",
@@ -14,6 +12,7 @@ local plugins = {
     },
     {
         "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
         opts = {
             show_current_context = true,
             show_current_context_start = true,
