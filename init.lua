@@ -5,9 +5,6 @@ vim.g.maplocalleader = " "
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1
 
-require("options")
-require("mappings")
-
 -- lazy.nvim setup
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -26,4 +23,11 @@ require("lazy").setup("plugins")
 
 require("lsp-config")
 require("setup")
-require("theme")
+require("options")
+require("mappings")
+
+-- Themery block
+-- This block will be replaced by Themery.
+vim.cmd("colorscheme darcula-solid")
+vim.g.theme_id = 2
+-- end themery block

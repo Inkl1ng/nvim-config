@@ -5,14 +5,32 @@ local plugins =  {
         config = function()
             require("themery").setup({
                 themes = {
-                    { name = 'VSCode', colorscheme = 'vscode' },
-                    { name = 'JetBrains dracula', colorscheme = 'darcula-solid'},
-                    { name = 'JetBrains Fleet', colorscheme = 'fleet' },
-                    { name = 'Atom One Dark', colorscheme = 'onedark'},
-                    { name = 'Dracula', colorscheme = 'dracula' },
-                    { name = 'Dracula soft', colorscheme = 'dracula-soft' },
+                    {
+                        name = 'VSCode',
+                        colorscheme = 'vscode'
+                    },
+                    {
+                        name = 'JetBrains dracula',
+                        colorscheme = 'darcula-solid'
+                    },
+                    {
+                        name = 'JetBrains Fleet',
+                        colorscheme = 'fleet',
+                    },
+                    {
+                        name = 'Atom One Dark',
+                        colorscheme = 'onedark'
+                    },
+                    {
+                        name = 'Dracula',
+                        colorscheme = 'dracula'
+                    },
+                    {
+                        name = 'Dracula soft',
+                        colorscheme = 'dracula-soft'
+                    },
                 },
-                themeConfigFile = "~/.config/nvim/lua/theme.lua",
+                themeConfigFile = "~/.config/nvim/init.lua",
                 livePreview = true
             })
         end
