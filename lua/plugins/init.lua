@@ -1,9 +1,16 @@
 local plugins = {
+    { 'neovim/nvim-lspconfig' },
+    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason-lspconfig.nvim' },
+    { 'hrsh7th/nvim-cmp' },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'SidOfc/carbon.nvim' },
+    { 'Civitasv/cmake-tools.nvim' },
+    { 'startup-nvim/startup.nvim' },
     {
         'nvim-treesitter/nvim-treesitter',
         build = ":TSUpdate"
     },
-    { 'SidOfc/carbon.nvim' },
     {
         'akinsho/toggleterm.nvim',
         version = "*",
@@ -18,11 +25,7 @@ local plugins = {
         version = '*',
         dependencies = 'nvim-tree/nvim-web-devicons'
     },
-    { 'neovim/nvim-lspconfig' },
-    { 'williamboman/mason.nvim' },
-    { 'williamboman/mason-lspconfig.nvim' },
-    { 'hrsh7th/nvim-cmp' },
-    { 'hrsh7th/cmp-nvim-lsp' },
+
     {
         'L3MON4D3/LuaSnip',
         version = 'v2.2',
@@ -42,7 +45,7 @@ local plugins = {
         'stevearc/overseer.nvim',
         opts = {}
     },
-    { 'Civitasv/cmake-tools.nvim' },
+
 }
 
 return plugins
