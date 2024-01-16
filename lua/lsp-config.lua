@@ -22,7 +22,6 @@ require('mason-lspconfig').setup({
         "lua_ls",
         "clangd",
         "marksman",
-        "lua_ls",
     },
     handlers = {
 	    default_setup,
@@ -45,7 +44,28 @@ require('mason-lspconfig').setup({
                     }
                 }
             })
-        end
+        end,
+        clangd = function()
+            require('lspconfig').clangd.setup({
+                capabilities = lsp_capabilities,
+                cmd = {
+                    'clangd',
+                    '--header-insertion=never',
+                    '--completion-style=detailed',
+                },
+                filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto', 'h', 'hpp'},
+                root_dir = require('lspconfig').util.root_pattern(
+                    '.clangd',
+                    '.clang-tidy',
+                    '.clang-format',
+                    'compile_commands.json',
+                    'compile_flags.txt',
+                    'configure.ac',
+                    '.git'
+                ),
+                single_file_support = true,
+            })
+        end,
     },
 })
 
@@ -59,7 +79,9 @@ local luasnip = require('luasnip')
 local cmp = require('cmp')
 cmp.setup({
     sources = {
-        {name = 'nvim_lsp', max_item_count = 12},
+        -- {name = 'nvim_lsp', max_item_count = 12},
+        { name = 'nvim_lsp' },
+        { name = 'nvim_lsp_signature_help' },
     },
     window = {
         completion = cmp.config.window.bordered(),
