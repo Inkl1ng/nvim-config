@@ -75,7 +75,7 @@ require('startup').setup({
         content = function()
             local clock = 'Time: ' .. os.date('%H:%M')
             local date = 'Date: ' .. os.date('%d-%m-%y')
-            return {clock, date}
+            return {'', clock, date}
         end,
 
         highlight = 'Constant',
