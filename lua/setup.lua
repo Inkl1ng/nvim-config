@@ -1,10 +1,5 @@
 require('overseer').setup()
 
-require('carbon').setup({
-    auto_open = false,
-    file_icons = false
-})
-
 require('bufferline').setup ({
     options = {
         numbers = 'ordinal',

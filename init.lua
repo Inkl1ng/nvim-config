@@ -25,6 +25,8 @@ require("lsp-config")
 require("setup")
 require("options")
 require("mappings")
+require("startup-screen")
+require("telescope-config")
 
 -- Themery block
 -- This block will be replaced by Themery.

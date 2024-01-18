@@ -18,4 +18,5 @@ require('commander').setup({
 require('mapping/Misc')
 require('mapping/LSP')
 require('mapping/Buffer')
+require('mapping/Tele')
 

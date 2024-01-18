@@ -4,9 +4,9 @@ local plugins = {
     { 'williamboman/mason-lspconfig.nvim' },
     { 'hrsh7th/nvim-cmp' },
     { 'hrsh7th/cmp-nvim-lsp' },
-    { 'SidOfc/carbon.nvim' },
     { 'Civitasv/cmake-tools.nvim' },
     { 'startup-nvim/startup.nvim' },
+    { 'nvim-telescope/telescope-file-browser.nvim' },
     {
         'nvim-treesitter/nvim-treesitter',
         build = ":TSUpdate"

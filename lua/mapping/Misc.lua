@@ -6,15 +6,6 @@ require('commander').add({
         keys = {'n', '<leader>TH'},
         cat = 'Misc.'
     },
-
-    -- Carbon
-    {
-        desc = 'Open Carbon',
-        cmd = '<CMD>Fcarbon<CR>',
-        keys = {'n', '<leader>fb'},
-        cat = 'Misc.'
-    },
-
     {
         desc = 'Toggle relative numbers',
         cmd = '<CMD>set relativenumber!<CR>',
