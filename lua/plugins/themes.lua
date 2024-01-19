@@ -16,6 +16,9 @@ local plugins =  {
                     {
                         name = 'JetBrains Fleet',
                         colorscheme = 'fleet',
+                        after = [[
+                            vim.cmd("highlight ColorColumn guibg=#373737")
+                        ]]
                     },
                     {
                         name = 'Atom One Dark',
