@@ -12,6 +12,7 @@ require("telescope").setup({
                 prompt_position = "top",
             }
         },
+        preview = { ls_short = true }
     },
     pickers = {
         find_files = {

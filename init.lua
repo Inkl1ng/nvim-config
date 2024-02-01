@@ -14,6 +14,7 @@ require("config.telescope")
 require("config.bufferline")
 require("config.startup")
 require("config.themes")
+require("config.LSP")
 
 -- Themery block
 -- This block will be replaced by Themery.
