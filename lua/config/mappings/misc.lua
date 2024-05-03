@@ -12,4 +12,10 @@ require("commander").add({
         keys = {"n", "<C-r>"},
         cat  = "Misc."
     },
+    {
+        desc = "Open Termdebug",
+        cmd  = "<CMD>Termdebug<CR>",
+        keys = {"n", "<leader>db"},
+        cat  = "Misc."
+    },
 })

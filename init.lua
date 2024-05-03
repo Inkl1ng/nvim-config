@@ -16,11 +16,15 @@ require("config.startup")
 require("config.themes")
 require("config.LSP")
 
+-- GDB debugging
+vim.cmd("packadd termdebug")
+vim.cmd("let g:termdebug_wide=1")
+
 -- Themery block
 -- This block will be replaced by Themery.
 vim.cmd("colorscheme fleet")
 
 vim.cmd("highlight ColorColumn guibg=#373737")
 
-vim.g.theme_id = 3
+vim.g.theme_id = 4
 -- end themery block
