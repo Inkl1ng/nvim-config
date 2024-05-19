@@ -1,4 +1,9 @@
 require("commander").add({
+    {
+        desc = "open commander",
+        cmd  = require("commander").show,
+        keys = {"n", "<leader>fc",}
+    },
     -- Themery
     {
         desc = "Open Themery",

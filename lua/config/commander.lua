@@ -6,7 +6,7 @@ require("commander").setup({
     prompt_title = "Commander",
     integration = {
         telescope = {
-                enable = false,
+                enable = true,
         },
         lazy = {
             enable = true,

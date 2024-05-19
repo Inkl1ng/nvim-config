@@ -1,8 +1,6 @@
 local plugins = {
     "FeiyouG/commander.nvim",
-    keys = {
-        {"<leader>fc", "<CMD>Telescope commander<CR>", mode = "n"}
-    }
+    dependencies = {"nvim-telescope/telescope.nvim"},
 }
 
 return plugins
