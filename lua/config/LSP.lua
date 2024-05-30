@@ -79,7 +79,6 @@ local luasnip = require("luasnip")
 local cmp = require("cmp")
 cmp.setup({
     sources = {
-        -- {name = "nvim_lsp', max_item_count = 12},
         { name = "nvim_lsp" },
         { name = "nvim_lsp_signature_help" },
     },

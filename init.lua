@@ -26,5 +26,5 @@ vim.cmd("colorscheme fleet")
 
 vim.cmd("highlight ColorColumn guibg=#373737")
 
-vim.g.theme_id = 4
+vim.g.theme_id = 3
 -- end themery block

@@ -29,7 +29,10 @@ require("startup").setup({
         fold_section = false,
         title = "me",
         margin = 5,
-        content = {"github.com/Inkl1ng"},
+        content = {
+            "github.com/Inkl1ng",
+            "<space>fc for keybinds"
+        },
         highlight = "Number",
         default_color = "",
         oldfiles_amount = 0

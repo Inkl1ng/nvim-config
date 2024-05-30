@@ -1,7 +1,6 @@
--- tabs to 4 spaces
+-- set tabs to be 4 spaces big
 vim.cmd("set tabstop=4")
 vim.cmd("set shiftwidth=4")
-vim.cmd("set expandtab")
 
 -- numbers
 vim.cmd("set number")
