@@ -1,30 +1,36 @@
--- set leader key to space, makes sure key mappings are correct
-vim.g.mapleader =  " "
-vim.g.maplocalleader = " "
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
--- disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- lazy.nvim setup
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable',
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
--- config
-require("config.lazy")
-require("config.commander")
-require("config.options")
-require("config.telescope")
-require("config.bufferline")
-require("config.startup")
-require("config.themes")
-require("config.LSP")
+require('lazy').setup({
+  -- bufferline setup for easier buffer management
+  { 'akinsho/bufferline.nvim', version = '*', },
+  {'felipeagc/fleet-theme-nvim'},
+  -- filesystem browser
+  {'TimUntersberger/neofs'},
+  -- lsp plugins
+  {'williamboman/mason.nvim'},
+  {'williamboman/mason-lspconfig.nvim'},
+  {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
+  {'neovim/nvim-lspconfig'},
+  {'hrsh7th/cmp-nvim-lsp'},
+  {'hrsh7th/nvim-cmp'},
+  {'L3MON4D3/LuaSnip'},
+  {'nvim-treesitter/nvim-treesitter', build = ":TSUpdate"},
+})
 
--- GDB debugging
-vim.cmd("packadd termdebug")
-vim.cmd("let g:termdebug_wide=1")
-
--- Themery block
--- This block will be replaced by Themery.
-vim.cmd("colorscheme fleet")
-
-vim.cmd("highlight ColorColumn guibg=#373737")
-
-vim.g.theme_id = 3
--- end themery block
+require('plugins')
+require('config')

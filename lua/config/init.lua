@@ -1,0 +1,5 @@
+require(... .. '/colorscheme')
+require(... .. '/keybinds')
+require(... .. '/options')
+require(... .. '/statusline')
+require(... .. '/termdebug')
