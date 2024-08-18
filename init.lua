@@ -1,6 +1,8 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.cmd('set termguicolors')
+
 -- lazy.nvim setup
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -16,20 +18,19 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  -- bufferline setup for easier buffer management
   { 'akinsho/bufferline.nvim', version = '*', },
-  {'felipeagc/fleet-theme-nvim'},
-  -- filesystem browser
-  {'TimUntersberger/neofs'},
+  {'andreypopp/vim-colors-plain'},
+  {'akinsho/toggleterm.nvim'},
   -- lsp plugins
+  {'VonHeikemen/lsp-zero.nvim', branch = 'v4.x'},
+  {'neovim/nvim-lspconfig'},
   {'williamboman/mason.nvim'},
   {'williamboman/mason-lspconfig.nvim'},
-  {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-  {'neovim/nvim-lspconfig'},
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/nvim-cmp'},
+  {'hrsh7th/cmp-buffer'},
+  {'hrsh7th/cmp-path'},
   {'L3MON4D3/LuaSnip'},
-  {'nvim-treesitter/nvim-treesitter', build = ":TSUpdate"},
 })
 
 require('plugins')

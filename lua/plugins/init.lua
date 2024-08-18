@@ -1,3 +1,3 @@
 require(... .. '/bufferline')
-require(... .. '/lsp')
-require(... .. '/neofs')
+require(... .. '/terminal')
+-- require(... .. '/LSP')

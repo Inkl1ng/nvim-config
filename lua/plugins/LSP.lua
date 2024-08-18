@@ -1,60 +1,33 @@
-vim.api.nvim_create_autocmd("LspAttach", {
-  desc = "LSP actions",
-  callback = function(event)
-    local opts = {buffer = event.buf}
-    -- LSP keybinds
-    vim.keymap.set('n', 'go',   '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-    vim.keymap.set('n', 'gr',   '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-    vim.keymap.set('n', 'sh', '<cmd>ClangdSwitchSourceHeader<cr>', opts)
-  end
+local lsp_zero = require('lsp-zero')
+
+lsp_zero.on_attach(function(client, bufnr)
+  lsp_zero.default_keymaps({buffer = bufnr})
+
+  vim.keymap.set('n', 'sh', '<cmd>ClangdSwitchSourceHeader<cr>', {buffer = bufnr})
+end)
+
+lsp_zero.extend_lspconfig({
+  sign_text = true,
+  lsp_attach = lsp_attach,
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
 })
 
-
-local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-local default_setup = function(server)
-  require("lspconfig")[server].setup({
-    capabilities = lsp_capabilities,
-  })
-end
-
-require("mason").setup({})
-require("mason-lspconfig").setup({
-  ensure_installed = {
-    "lua_ls",
-    "clangd",
-    "marksman",
-  },
+require('mason').setup({})
+require('mason-lspconfig').setup({
   handlers = {
-    default_setup,
-    lua_ls = function()
-      require("lspconfig").lua_ls.setup({
-      capabilities = lsp_capabilities,
-      settings = {
-        Lua = {
-          runtime = {
-            version = "LuaJIT"
-          },
-          diagnostics = {
-            globals = {"vim"},
-          },
-          workspace = {
-            library = {
-              vim.env.VIMRUNTIME,
-            }
-          }
-        }
-      }
-    })
+    function(server_name)
+      require('lspconfig')[server_name].setup({})
     end,
-
+    
     clangd = function()
       require("lspconfig").clangd.setup({
         capabilities = lsp_capabilities,
         cmd = {
           "clangd",
           "--header-insertion=never",
-          "--completion-style=detailed",
+          "--function-arg-placeholders",
+          "--background-index=0",
+          -- "--compile-commands-dir=.",
         },
         filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto", "h", "hpp"},
         root_dir = require("lspconfig").util.root_pattern(
@@ -66,70 +39,72 @@ require("mason-lspconfig").setup({
           "configure.ac",
           ".git"
         ),
-        single_file_support = true,
-        })
-    end,
-  },
+        single_file_support = true
+      })
+    end
+  }
 })
 
+local cmp = require('cmp')
+local cmp_action = require('lsp-zero').cmp_action()
+local select_opts = {behavior = cmp.SelectBehavior.Select}
+vim.g.cmp_toggle = false
 
-local has_words_before = function()
-  unpack = unpack or table.unpack
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
-end
-
-local luasnip = require("luasnip")
-local cmp = require("cmp")
 cmp.setup({
+  enabled = function()
+    return vim.g.cmp_toggle
+  end,
   sources = {
-    { name = "nvim_lsp" },
-    { name = "nvim_lsp_signature_help" },
+    {name = 'path'},
+    {name = 'nvim_lsp'},
+    {name = 'luasnip', keyword_length = 2},
+    {name = 'buffer', keyword_length = 3},
+  },
+  mapping = cmp.mapping.preset.insert({
+    -- confirm completion item
+    ['<Enter>'] = cmp.mapping.confirm({ select = false }),
+
+    ['<tab>'] = cmp.mapping.select_next_item(select_opts),
+    ['<s-tab>'] = cmp.mapping.select_prev_item(select_opts),
+
+    -- trigger completion menu
+    ['<C-Space>'] = cmp.mapping.complete(),
+
+    -- scroll up and down the documentation window
+    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-d>'] = cmp.mapping.scroll_docs(4),   
+
+    -- navigate between snippet placeholders
+    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+  }),
+  snippet = {
+    expand = function(args)
+      -- You need Neovim v0.10 to use vim.snippet
+      require('luasnip').lsp_expand(args.body)
+    end,
   },
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
-  -- autocomplete keybinds
-  mapping = cmp.mapping.preset.insert({
-    ["<CR>"] = cmp.mapping({
-      i = function(fallback)
-        if cmp.visible() and cmp.get_active_entry() then
-          cmp.confirm({behavior = cmp.ConfirmBehavior.Replace, select = false})
-        else
-          fallback()
-        end
-      end,
-      s = cmp.mapping.confirm({select = true}),
-      c = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Replace, select = true})
-    }),
-    ["<C-Tab>"] = cmp.mapping.complete(),
-    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-d>"] = cmp.mapping.scroll_docs(4),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end, {"i", "s"}),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, {"i", "s"})
-  }),
-  snippet = {
-    expand = function(args)
-      require("luasnip").lsp_expand(args.body)
-  end,
-  },
 })
+-- max entires to show at once
+vim.cmd('set pumheight=12')
+-- keybinding to toggle on/off autocomplete
+vim.keymap.set(
+  'n',
+  '<leader>au',
+  function()
+    vim.g.cmp_toggle = not vim.g.cmp_toggle
+    local status
+
+    if vim.g.cmp_toggle then
+      status = 'ENABLED'
+    else
+      status = 'DISABLED'
+    end
+
+    print('nvim-cmp', status)
+  end
+)
