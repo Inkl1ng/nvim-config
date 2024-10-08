@@ -1,8 +1,3 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
-vim.cmd('set termguicolors')
-
 -- lazy.nvim setup
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -17,21 +12,24 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
-  { 'akinsho/bufferline.nvim', version = '*', },
-  {'andreypopp/vim-colors-plain'},
-  {'akinsho/toggleterm.nvim'},
-  -- lsp plugins
-  {'VonHeikemen/lsp-zero.nvim', branch = 'v4.x'},
-  {'neovim/nvim-lspconfig'},
-  {'williamboman/mason.nvim'},
-  {'williamboman/mason-lspconfig.nvim'},
-  {'hrsh7th/cmp-nvim-lsp'},
-  {'hrsh7th/nvim-cmp'},
-  {'hrsh7th/cmp-buffer'},
-  {'hrsh7th/cmp-path'},
-  {'L3MON4D3/LuaSnip'},
-})
+vim.g.mapleader = ' '
 
-require('plugins')
-require('config')
+-- options
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.background = "dark"
+vim.o.termguicolors = true
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- tab options
+-- 4 spaces wide, expand to spaces
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+
+-- GDB debugging
+vim.cmd("packadd termdebug")
+vim.cmd("let g:termdebug_wide=1")
+
+require("config.lazy")
