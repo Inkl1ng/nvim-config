@@ -30,7 +30,7 @@ local plugins = {
             require("config.toggleterm")
         end
     },
-    
+
     {
         "FeiyouG/commander.nvim",
         dependencies = { "nvim-telescope/telescope.nvim" },
@@ -46,6 +46,17 @@ local plugins = {
         end
     },
 
+    {
+        "kdheepak/lazygit.nvim"
+    },
+
+    {
+        "nvim-lualine/lualine.nvim",
+        config = function()
+            require("config.lualine")
+        end
+    },
+
     -- LSP plugins
     {
         "neovim/nvim-lspconfig",
@@ -58,6 +69,19 @@ local plugins = {
         end
     },
 
+    -- DAP
+    {
+        "mfussenegger/nvim-dap",
+        dependencies = {
+            "jay-babu/mason-nvim-dap.nvim", -- config for this plugin in lsp.lua
+            "rcarriga/nvim-dap-ui",
+            "nvim-neotest/nvim-nio"
+        },
+        config = function()
+            require("config.dap")
+        end
+    },
+
     -- Completion
     {
         "hrsh7th/nvim-cmp",
@@ -65,6 +89,8 @@ local plugins = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-nvim-lsp-signature-help",
             "L3MON4D3/LuaSnip",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-buffer"
         },
         config = function()
             require("config.nvim-cmp")

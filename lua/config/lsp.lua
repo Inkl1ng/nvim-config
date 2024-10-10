@@ -2,10 +2,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
     callback = function(event)
       local opts = {buffer = event.buf}
-  
+
       -- these will be buffer-local keybindings
       -- because they only work if you have an active language server
-  
+
       vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
       vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
       vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set('n', 'sh', '<CMD>ClangdSwitchSourceHeader<CR>', opts)
     end
   })
-  
+
 
 require("mason").setup()
 require("mason-lspconfig").setup({
@@ -32,7 +32,7 @@ require("mason-lspconfig").setup({
         function(server_name)
             require("lspconfig")[server_name].setup({})
         end,
-        
+
         clangd = function()
             require("lspconfig").clangd.setup({
                 capabilities = lsp_capabilities,
@@ -43,7 +43,18 @@ require("mason-lspconfig").setup({
                     "--background-index=0",
                 -- "--compile-commands-dir=.",
                 },
-                filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto", "h", "hpp"},
+                filetypes = {
+                    "c",
+                    "cpp",
+                    "objc",
+                    "objcpp",
+                    "cuda",
+                    "proto",
+                    "h",
+                    "hpp",
+                    "tpp",
+                    "inl"
+                },
                 root_dir = require("lspconfig").util.root_pattern(
                     ".clangd",
                     ".clang-tidy",
