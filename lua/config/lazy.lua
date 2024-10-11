@@ -50,13 +50,6 @@ local plugins = {
         "kdheepak/lazygit.nvim"
     },
 
-    {
-        "nvim-lualine/lualine.nvim",
-        config = function()
-            require("config.lualine")
-        end
-    },
-
     -- LSP plugins
     {
         "neovim/nvim-lspconfig",
@@ -99,10 +92,21 @@ local plugins = {
 
     -- Themes
     {
+        "zaldih/themery.nvim",
+        lazy = false,
+        config = function()
+            require("config.themery")
+        end
+    },
+    {
         "Mofiqul/vscode.nvim",
         config = function()
             require("config.themes.vscode")
         end
+    },
+
+    {
+        "felipeagc/fleet-theme-nvim"
     }
 }
 

@@ -29,4 +29,9 @@ require("commander").add({
         cmd = "<CMD>LazyGit<CR>",
         keys = { "n", "<Leader>lg" }
     },
+    {
+        desc = "Open Themery",
+        cmd = "<CMD>Themery<CR>",
+        keys = { "n", "<Leader>TH" }
+    }
 })
