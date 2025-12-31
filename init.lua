@@ -38,13 +38,15 @@ require('lazy').setup({
   -- colorscheme(s)
   { 'ellisonleao/gruvbox.nvim', priority = 1000, config = true, opts = ... },
   { 'Mofiqul/vscode.nvim' },
+  { 'Mofiqul/dracula.nvim' },
+  { 'felipeagc/fleet-theme-nvim' },
 
   {
     'zaldih/themery.nvim',
     lazy = false,
     config = function()
       require('themery').setup({
-        themes = { 'gruvbox', 'vscode' },
+        themes = { 'gruvbox', 'vscode', 'dracula', 'fleet' },
         livePreview = true
       })
     end
@@ -87,7 +89,7 @@ require('lazy').setup({
   {
     'mason-org/mason-lspconfig.nvim',
     opts = {
-      ensure_installed = { 'clangd', 'lua_ls' }
+      ensure_installed = { 'clangd', 'lua_ls', 'glsl_analyzer' }
     },
     dependencies = {
       { 'mason-org/mason.nvim', opts = {} },
